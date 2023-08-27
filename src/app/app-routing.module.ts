@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Route, RouterModule, Routes } from '@angular/router';
+import { LoadingComponent } from 'src/core/components/loading.component';
 
-const routes: Routes = [];
+const entryRoute: Routes = [{ path: '**', component: LoadingComponent}]
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(entryRoute)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
