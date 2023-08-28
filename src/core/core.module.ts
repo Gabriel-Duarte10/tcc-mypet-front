@@ -17,10 +17,13 @@ import {CdkAccordionModule} from '@angular/cdk/accordion';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { LoadingComponent } from './components/loading.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AlertComponent } from './components/alert/alert.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 const components = [
   LoadingComponent,
+  AlertComponent
 ];
 const modules = [
   CommonModule,
@@ -30,6 +33,7 @@ const modules = [
   // Grafico Material
 
   // Angular Bootstrap
+  NgbModule,
 
   //Angular Material
   MatTableModule,
@@ -50,7 +54,7 @@ const modules = [
 @NgModule({
   imports: [...modules],
   providers: [httpInterceptorProviders],
-  declarations: [...components],
+  declarations: [...components, LoadingComponent],
   exports: [...components, ...modules],
 })
 export class CoreModule { }

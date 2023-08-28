@@ -34,6 +34,23 @@ $tcc-mypet-front-theme: mat.define-light-theme((
 @include mat.all-component-themes($tcc-mypet-front-theme);
 
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "bootstrap/scss/bootstrap";
+@import "variables";
+@import "root";
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Isso evitará a rolagem horizontal */
+  font-family: Poppins;
+  height: 100%;
+}
+body::-webkit-scrollbar {
+  display: none;
+}
+button:disabled, input:disabled {
+  opacity: 0.3;
+  cursor: default;
+  pointer-events: none;
+}

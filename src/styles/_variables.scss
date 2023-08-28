@@ -1,0 +1,145 @@
+$margins: (
+  1: 0.25rem,
+  2: 0.5rem,
+  3: 0.75rem,
+  4: 1rem,
+  5: 1.25rem
+);
+
+$weights: (
+  500: 500,
+  600: 600,
+  700: 700,
+  // Adicionar mais pesos conforme necessário
+);
+$padding-x: (
+  0: 0,
+  2: 2rem,
+  4: 4rem,
+);
+
+$displays: (
+  flex: "flex",
+  block: "block",
+  inline: "inline",
+  inline-block: "inline-block",
+  none: "none",
+  // Adicione mais conforme necessário
+);
+$text-aligns: (
+  left: "left",
+  right: "right",
+  center: "center",
+  justify: "justify",
+  // Adicione mais conforme necessário
+);
+
+$btn-border-radius: 2px;
+
+$gray-shades: (
+  1: #E5E5E5,
+  2: #CCCCCC,
+  3: #B2B2B2,
+  4: #999999,
+  5: #7F7F7F,
+  6: #666666,
+  7: #4C4C4C,
+  8: #333333,
+  9: #191919
+);
+
+$white: #ffffff;
+$floralWhite: #f8f5f1;
+$red: #d95f5f;
+$redLight: #d9a4a4;
+$blue: #03286a;
+$blueLight: #7082a4;
+$blueCeleste: #e9eff4;
+$bluePass: #c1edf6;
+$blueTurquoise: #5ed8f1;
+$green: #259821;
+$greenLight: #98c72a;
+$greenDefault: #77bb6b;
+$greenMint: #d4ecd4;
+$yellow: #f7a30f;
+$yellowLight: #ffd012;
+$yellowBlond: #f6efc1;
+$yellowApache: #cfc477;
+$orange: #ed6e0b;
+$orangeLight: #f6e7d1;
+$grey: #656565;
+$greyDefault: #b6bec8;
+$greyLight: #e8e4e4;
+$greyDark: #323c47;
+$pink: #f6c1c1;
+$pinkLight: #f3ddd9;
+$purple: #b1a4d8;
+$purpleLight: #e7dfff;
+$lightLilac: #edc9f1;
+
+$theme-colors: (
+  "white": $white,
+  "floral-white": $floralWhite,
+  "red": $red,
+  "red-light": $redLight,
+  "blue": $blue,
+  "blue-light": $blueLight,
+  "blue-celeste": $blueCeleste,
+  "blue-pass": $bluePass,
+  "blue-turquoise": $blueTurquoise,
+  "green": $green,
+  "green-light": $greenLight,
+  "green-default": $greenDefault,
+  "green-mint": $greenMint,
+  "yellow": $yellow,
+  "yellow-light": $yellowLight,
+  "yellow-blond": $yellowBlond,
+  "yellow-apache": $yellowApache,
+  "orange": $orange,
+  "orange-light": $orangeLight,
+  "grey": $grey,
+  "grey-default": $greyDefault,
+  "grey-light": $greyLight,
+  "grey-dark": $greyDark,
+  "pink": $pink,
+  "pink-light": $pinkLight,
+  "purple": $purple,
+  "purple-light": $purpleLight,
+  "light-lilac": $lightLilac,
+);
+
+$font-family-base: Roboto, Arial, "Arial Unicode MS", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue",
+  "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+$sizes: (
+  10: 10%,
+  20: 20%,
+  30: 30%,
+  40: 40%,
+  60: 60%,
+  70: 70%,
+  80: 80%,
+  90: 90%,
+);
+$font-sizes: (
+  "8": 8px,
+  "10": 10px,
+  "12": 12px,
+  "14": 14px,
+  "15": 15px,
+  "16": 16px,
+  "18": 18px,
+  "20": 20px,
+  "22": 22px,
+  "24": 24px,
+  "26": 26px,
+  "28": 28px,
+  "32": 32px,
+  "36": 36px,
+  "48": 48px,
+  "64": 64px,
+  "72": 72px
+);
+$spacers: (
+  6: 1rem * 3.5,
+);

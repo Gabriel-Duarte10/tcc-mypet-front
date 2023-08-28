@@ -16,6 +16,7 @@ import { AnimalTypesComponent } from './views/animal-types/animal-types.componen
 import { SizesComponent } from './views/sizes/sizes.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CoreModule } from 'src/core/core.module';
+import { AlertComponent } from '../core/components/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { CoreModule } from 'src/core/core.module';
     FeaturesComponent,
     BreedsComponent,
     AnimalTypesComponent,
-    SizesComponent
+    SizesComponent,
   ],
   imports: [
     BrowserModule,

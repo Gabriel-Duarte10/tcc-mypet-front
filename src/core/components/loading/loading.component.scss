@@ -1,0 +1,28 @@
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3); /* Cinza transparente */
+  z-index: 9999; /* Garante que apareça acima de tudo */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-container {
+  width: 48px;
+  height: 48px;
+  animation: spin 2s linear infinite;
+}
+

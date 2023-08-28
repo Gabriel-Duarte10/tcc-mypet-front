@@ -6,3 +6,9 @@ export interface User extends BaseEntity {
   admin: boolean;
   cellphone?: boolean;
 }
+export interface UserRegistration {
+  name: string;
+  email: string;
+  password: string;
+  cellphone: string;
+}

@@ -1,0 +1,51 @@
+:root {
+  @each $color-name, $color in $theme-colors {
+    .text-#{$color-name} {
+      color: $color;
+    }
+  }
+  @each $text-align-name, $text-align-value in $text-aligns {
+    .text-align-#{$text-align-name} {
+      text-align: $text-align-value;
+    }
+  }
+  @each $display-name, $display-value in $displays {
+    .d-#{$display-name} {
+      display: $display-value;
+    }
+  }
+  @each $size-name, $size-value in $font-sizes {
+    .fs-#{$size-name} {
+      font-size: $size-value;
+    }
+  }
+  @each $weight-name, $weight-value in $weights {
+    .font-weight-#{$weight-name} {
+      font-weight: $weight-value;
+    }
+  }
+  @each $padding-name, $padding-value in $padding-x {
+    .px-#{$padding-name} {
+      padding-left: $padding-value;
+      padding-right: $padding-value;
+    }
+  }
+  @each $margin-name, $margin-value in $margins {
+    .m-#{$margin-name} {
+      margin: $margin-value;
+    }
+    .mt-#{$margin-name} {
+      margin-top: $margin-value;
+    }
+    .mb-#{$margin-name} {
+      margin-bottom: $margin-value;
+    }
+    .ml-#{$margin-name} {
+      margin-left: $margin-value;
+    }
+    .mr-#{$margin-name} {
+      margin-right: $margin-value;
+    }
+  }
+  --btn-radius: #{$btn-border-radius};
+}

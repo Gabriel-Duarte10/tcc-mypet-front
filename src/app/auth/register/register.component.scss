@@ -1,0 +1,75 @@
+.register-container, .login-container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.image-section,
+.login-section,
+.register-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-section img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;  /* Isso fará com que a imagem cubra a área de seu contêiner */
+  display: block;
+  border-top-left-radius: 8%;
+  border-bottom-left-radius: 8%;
+}
+
+.register-box {
+  width: 404px;
+  max-width: 404px;
+  text-align: left;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.btn-register {
+  width: 100%;
+  height: 39px;
+  background-color: #FF8A00;
+  border-radius: 10px;
+  border: none;
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 10px;
+  cursor: pointer;
+  color: #fff;
+}
+input {
+  width: 100%;
+  height: 32px;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  //placeholder opacity 0.3
+  &::placeholder {
+    opacity: 0.3;
+    font-family: Poppins;
+  }
+}
+h1 {
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 48px;
+  color: #000000;
+  margin-bottom: 10px;
+}
+label {
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  color: #000000;
+  display: block;
+  margin-bottom: 5px;
+}

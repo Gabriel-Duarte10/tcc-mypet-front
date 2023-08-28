@@ -1,0 +1,133 @@
+.login-container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden; /* Isso evitará a rolagem vertical */
+}
+
+.image-section,
+.login-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-section img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;  /* Isso fará com que a imagem cubra a área de seu contêiner */
+  display: block;
+  border-top-left-radius: 8%;
+  border-bottom-left-radius: 8%;
+}
+
+.login-box {
+  width: 404px;
+  max-width: 404px;
+  text-align: left;
+  background-color: #ffffff; /* Adicionando uma cor de fundo para a caixa de login */
+  padding: 20px;
+  border-radius: 10px; /* Arredondando os cantos da caixa de login */
+}
+
+
+h1 {
+  font-family: Poppins;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 48px;
+  color: #000000;
+  margin-bottom: 10px;
+}
+
+p {
+  color: #000;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+
+  line-height: normal;
+}
+
+label {
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  color: #000000;
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  height: 32px;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  //placeholder opacity 0.3
+  &::placeholder {
+    opacity: 0.3;
+    font-family: Poppins;
+  }
+}
+
+.btn-forgot-password {
+  background: none;
+  border: none;
+  margin-bottom: 10px;
+  color: var(--action-sec, #0C2A92);
+  font-family: Poppins;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+
+.btn-login {
+  width: 100%;
+  height: 39px;
+  background-color: #FF8A00;
+  border-radius: 10px;
+  border: none;
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  cursor: pointer;
+  color: #fff;
+}
+
+.or-section span {
+  display: inline-block;
+  background-color: #FFF;
+  padding: 0 10px;
+  position: relative;
+  top: -12px;
+  color: #000;
+  font-family: Poppins;
+  font-size: 9px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.or-section {
+  border-top: 2px solid #F5F5F5;
+  margin-top: 12px;
+  text-align: center;
+}
+
+.btn-register {
+  background-color: transparent;
+  color: #0F3DDE;
+  border: none;
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
