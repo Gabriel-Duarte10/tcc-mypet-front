@@ -39,6 +39,8 @@ $tcc-mypet-front-theme: mat.define-light-theme((
 @import "variables";
 @import "root";
 
+@import "styles/fonts/style";
+
 body, html {
   margin: 0;
   padding: 0;
@@ -54,3 +56,19 @@ button:disabled, input:disabled {
   cursor: default;
   pointer-events: none;
 }
+.cdk-overlay-container {
+  margin-top: 1.5%;
+  z-index: 9999;
+
+}
+.mat-mdc-menu-content{
+  background-color: #ebedee;
+}
+.mat-mdc-menu-item {
+  background-color: #ebedee;
+}
+.mat-mdc-menu-item span.mat-mdc-menu-item-text {
+  background-color: #ebedee;
+  /* Outros estilos para o item "Logout" aqui */
+}
+

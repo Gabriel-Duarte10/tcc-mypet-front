@@ -1,0 +1,844 @@
+@import "variables";
+
+@font-face {
+  font-family: '#{$icomoon-font-family}';
+  src:
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?4ogd1b') format('truetype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?4ogd1b') format('woff'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.svg?4ogd1b##{$icomoon-font-family}') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="ta-"], [class*=" ta-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: '#{$icomoon-font-family}' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Enable Ligatures ================ */
+  letter-spacing: 0;
+  -webkit-font-feature-settings: "liga";
+  -moz-font-feature-settings: "liga=1";
+  -moz-font-feature-settings: "liga";
+  -ms-font-feature-settings: "liga" 1;
+  font-feature-settings: "liga";
+  -webkit-font-variant-ligatures: discretionary-ligatures;
+  font-variant-ligatures: discretionary-ligatures;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ta-user-group {
+  &:before {
+    content: $ta-user-group;
+  }
+}
+.ta-competition {
+  &:before {
+    content: $ta-competition;
+  }
+}
+.ta-folder-open {
+  &:before {
+    content: $ta-folder-open;
+  }
+}
+.ta-triangle {
+  &:before {
+    content: $ta-triangle;
+  }
+}
+.ta-update {
+  &:before {
+    content: $ta-update;
+  }
+}
+.ta-doc-update {
+  &:before {
+    content: $ta-doc-update;
+  }
+}
+.ta-docs {
+  &:before {
+    content: $ta-docs;
+  }
+}
+.ta-doc-report {
+  &:before {
+    content: $ta-doc-report;
+  }
+}
+.ta-status {
+  &:before {
+    content: $ta-status;
+  }
+}
+.ta-gota {
+  &:before {
+    content: $ta-gota;
+  }
+}
+.ta-star {
+  &:before {
+    content: $ta-star;
+  }
+}
+.ta-heart {
+  &:before {
+    content: $ta-heart;
+  }
+}
+.ta-excel {
+  &:before {
+    content: $ta-excel;
+  }
+}
+.ta-doc {
+  &:before {
+    content: $ta-doc;
+  }
+}
+.ta-word {
+  &:before {
+    content: $ta-word;
+  }
+}
+.ta-menu {
+  &:before {
+    content: $ta-menu;
+  }
+}
+.ta-lamp {
+  &:before {
+    content: $ta-lamp;
+  }
+}
+.ta-power-plug {
+  &:before {
+    content: $ta-power-plug;
+  }
+}
+.ta-square-transparent {
+  &:before {
+    content: $ta-square-transparent;
+  }
+}
+.ta-square-dark {
+  &:before {
+    content: $ta-square-dark;
+  }
+}
+.ta-square-minus {
+  &:before {
+    content: $ta-square-minus;
+  }
+}
+.ta-square-menu {
+  &:before {
+    content: $ta-square-menu;
+  }
+}
+.ta-lt {
+  &:before {
+    content: $ta-lt;
+  }
+}
+.ta-br {
+  &:before {
+    content: $ta-br;
+  }
+}
+.ta-bc {
+  &:before {
+    content: $ta-bc;
+  }
+}
+.ta-se {
+  &:before {
+    content: $ta-se;
+  }
+}
+.ta-square-phone {
+  &:before {
+    content: $ta-square-phone;
+  }
+}
+.ta-phone {
+  &:before {
+    content: $ta-phone;
+  }
+}
+.ta-minus-circle {
+  &:before {
+    content: $ta-minus-circle;
+  }
+}
+.ta-checkbox-checked {
+  &:before {
+    content: $ta-checkbox-checked;
+  }
+}
+.ta-square-closer {
+  &:before {
+    content: $ta-square-closer;
+  }
+}
+.ta-times {
+  &:before {
+    content: $ta-times;
+  }
+}
+.ta-times-circle {
+  &:before {
+    content: $ta-times-circle;
+  }
+}
+.ta-info-circle-dark {
+  &:before {
+    content: $ta-info-circle-dark;
+  }
+}
+.ta-info-circle {
+  &:before {
+    content: $ta-info-circle;
+  }
+}
+.ta-exclamation {
+  &:before {
+    content: $ta-exclamation;
+  }
+}
+.ta-exclamation-circle {
+  &:before {
+    content: $ta-exclamation-circle;
+  }
+}
+.ta-interrogation-balloon {
+  &:before {
+    content: $ta-interrogation-balloon;
+  }
+}
+.ta-interrogation-circle {
+  &:before {
+    content: $ta-interrogation-circle;
+  }
+}
+.ta-alert {
+  &:before {
+    content: $ta-alert;
+  }
+}
+.ta-security-check {
+  &:before {
+    content: $ta-security-check;
+  }
+}
+.ta-check {
+  &:before {
+    content: $ta-check;
+  }
+}
+.ta-check-circle {
+  &:before {
+    content: $ta-check-circle;
+  }
+}
+.ta-arrow-down-circle {
+  &:before {
+    content: $ta-arrow-down-circle;
+  }
+}
+.ta-arrow-up-circle {
+  &:before {
+    content: $ta-arrow-up-circle;
+  }
+}
+.ta-arrow-right-circle {
+  &:before {
+    content: $ta-arrow-right-circle;
+  }
+}
+.ta-arrow-left-circle {
+  &:before {
+    content: $ta-arrow-left-circle;
+  }
+}
+.ta-arrow-down {
+  &:before {
+    content: $ta-arrow-down;
+  }
+}
+.ta-arrow-left {
+  &:before {
+    content: $ta-arrow-left;
+  }
+}
+.ta-arrow-right {
+  &:before {
+    content: $ta-arrow-right;
+  }
+}
+.ta-arrow-up {
+  &:before {
+    content: $ta-arrow-up;
+  }
+}
+.ta-plus-circle {
+  &:before {
+    content: $ta-plus-circle;
+  }
+}
+.ta-minus-circle1 {
+  &:before {
+    content: $ta-minus-circle1;
+  }
+}
+.ta-power {
+  &:before {
+    content: $ta-power;
+  }
+}
+.ta-exit-door {
+  &:before {
+    content: $ta-exit-door;
+  }
+}
+.ta-gateway {
+  &:before {
+    content: $ta-gateway;
+  }
+}
+.ta-logout {
+  &:before {
+    content: $ta-logout;
+  }
+}
+.ta-login {
+  &:before {
+    content: $ta-login;
+  }
+}
+.ta-man-arrows {
+  &:before {
+    content: $ta-man-arrows;
+  }
+}
+.ta-hourglass {
+  &:before {
+    content: $ta-hourglass;
+  }
+}
+.ta-trash {
+  &:before {
+    content: $ta-trash;
+  }
+}
+.ta-blocked {
+  &:before {
+    content: $ta-blocked;
+  }
+}
+.ta-box {
+  &:before {
+    content: $ta-box;
+  }
+}
+.ta-atom {
+  &:before {
+    content: $ta-atom;
+  }
+}
+.ta-chart {
+  &:before {
+    content: $ta-chart;
+  }
+}
+.ta-chat {
+  &:before {
+    content: $ta-chat;
+  }
+}
+.ta-checkbox-unchecked {
+  &:before {
+    content: $ta-checkbox-unchecked;
+  }
+}
+.ta-radio-checked {
+  &:before {
+    content: $ta-radio-checked;
+  }
+}
+.ta-radio-unchecked {
+  &:before {
+    content: $ta-radio-unchecked;
+  }
+}
+.ta-confused {
+  &:before {
+    content: $ta-confused;
+  }
+}
+.ta-download {
+  &:before {
+    content: $ta-download;
+  }
+}
+.ta-companies {
+  &:before {
+    content: $ta-companies;
+  }
+}
+.ta-envelope {
+  &:before {
+    content: $ta-envelope;
+  }
+}
+.ta-eye {
+  &:before {
+    content: $ta-eye;
+  }
+}
+.ta-user-o {
+  &:before {
+    content: $ta-user-o;
+  }
+}
+.ta-account {
+  &:before {
+    content: $ta-account;
+  }
+}
+.ta-badge {
+  &:before {
+    content: $ta-badge;
+  }
+}
+.ta-lamp1 {
+  &:before {
+    content: $ta-lamp1;
+  }
+}
+.ta-towers {
+  &:before {
+    content: $ta-towers;
+  }
+}
+.ta-tower {
+  &:before {
+    content: $ta-tower;
+  }
+}
+.ta-test-tube {
+  &:before {
+    content: $ta-test-tube;
+  }
+}
+.ta-download-arrow {
+  &:before {
+    content: $ta-download-arrow;
+  }
+}
+.ta-upload {
+  &:before {
+    content: $ta-upload;
+  }
+}
+.ta-attachment {
+  &:before {
+    content: $ta-attachment;
+  }
+}
+.ta-robot {
+  &:before {
+    content: $ta-robot;
+  }
+}
+.ta-expand {
+  &:before {
+    content: $ta-expand;
+  }
+}
+.ta-folder-closer {
+  &:before {
+    content: $ta-folder-closer;
+  }
+}
+.ta-folders {
+  &:before {
+    content: $ta-folders;
+  }
+}
+.ta-gallery {
+  &:before {
+    content: $ta-gallery;
+  }
+}
+.ta-spanner {
+  &:before {
+    content: $ta-spanner;
+  }
+}
+.ta-spanner-arrow {
+  &:before {
+    content: $ta-spanner-arrow;
+  }
+}
+.ta-spanners {
+  &:before {
+    content: $ta-spanners;
+  }
+}
+.ta-gear {
+  &:before {
+    content: $ta-gear;
+  }
+}
+.ta-gears {
+  &:before {
+    content: $ta-gears;
+  }
+}
+.ta-gear-spanner {
+  &:before {
+    content: $ta-gear-spanner;
+  }
+}
+.ta-form-edit {
+  &:before {
+    content: $ta-form-edit;
+  }
+}
+.ta-form {
+  &:before {
+    content: $ta-form;
+  }
+}
+.ta-form-location {
+  &:before {
+    content: $ta-form-location;
+  }
+}
+.ta-table {
+  &:before {
+    content: $ta-table;
+  }
+}
+.ta-calendar {
+  &:before {
+    content: $ta-calendar;
+  }
+}
+.ta-checklist {
+  &:before {
+    content: $ta-checklist;
+  }
+}
+.ta-edit {
+  &:before {
+    content: $ta-edit;
+  }
+}
+.ta-doc-empty {
+  &:before {
+    content: $ta-doc-empty;
+  }
+}
+.ta-doc-filled {
+  &:before {
+    content: $ta-doc-filled;
+  }
+}
+.ta-docs-filled {
+  &:before {
+    content: $ta-docs-filled;
+  }
+}
+.ta-docs-chart {
+  &:before {
+    content: $ta-docs-chart;
+  }
+}
+.ta-doc-money {
+  &:before {
+    content: $ta-doc-money;
+  }
+}
+.ta-doc-checked {
+  &:before {
+    content: $ta-doc-checked;
+  }
+}
+.ta-pdf {
+  &:before {
+    content: $ta-pdf;
+  }
+}
+.ta-log {
+  &:before {
+    content: $ta-log;
+  }
+}
+.ta-like {
+  &:before {
+    content: $ta-like;
+  }
+}
+.ta-dislike {
+  &:before {
+    content: $ta-dislike;
+  }
+}
+.ta-recharge {
+  &:before {
+    content: $ta-recharge;
+  }
+}
+.ta-spinner {
+  &:before {
+    content: $ta-spinner;
+  }
+}
+.ta-three-points {
+  &:before {
+    content: $ta-three-points;
+  }
+}
+.ta-printer {
+  &:before {
+    content: $ta-printer;
+  }
+}
+.ta-facebook {
+  &:before {
+    content: $ta-facebook;
+  }
+}
+.ta-instagram {
+  &:before {
+    content: $ta-instagram;
+  }
+}
+.ta-camera {
+  &:before {
+    content: $ta-camera;
+  }
+}
+.ta-photographic {
+  &:before {
+    content: $ta-photographic;
+  }
+}
+.ta-link-external {
+  &:before {
+    content: $ta-link-external;
+  }
+}
+.ta-save {
+  &:before {
+    content: $ta-save;
+  }
+}
+.ta-pencil {
+  &:before {
+    content: $ta-pencil;
+  }
+}
+.ta-weight {
+  &:before {
+    content: $ta-weight;
+  }
+}
+.ta-location {
+  &:before {
+    content: $ta-location;
+  }
+}
+.ta-lock {
+  &:before {
+    content: $ta-lock;
+  }
+}
+.ta-eye-blocked {
+  &:before {
+    content: $ta-eye-blocked;
+  }
+}
+.ta-sound {
+  &:before {
+    content: $ta-sound;
+  }
+}
+.ta-zoom-in {
+  &:before {
+    content: $ta-zoom-in;
+  }
+}
+.ta-zoom-out {
+  &:before {
+    content: $ta-zoom-out;
+  }
+}
+.ta-serach-actions {
+  &:before {
+    content: $ta-serach-actions;
+  }
+}
+.ta-search {
+  &:before {
+    content: $ta-search;
+  }
+}
+.ta-cloud {
+  &:before {
+    content: $ta-cloud;
+  }
+}
+.ta-headset {
+  &:before {
+    content: $ta-headset;
+  }
+}
+.ta-monitor {
+  &:before {
+    content: $ta-monitor;
+  }
+}
+.ta-notebook {
+  &:before {
+    content: $ta-notebook;
+  }
+}
+.ta-rede {
+  &:before {
+    content: $ta-rede;
+  }
+}
+.ta-site {
+  &:before {
+    content: $ta-site;
+  }
+}
+.ta-smartphone {
+  &:before {
+    content: $ta-smartphone;
+  }
+}
+.ta-wifi {
+  &:before {
+    content: $ta-wifi;
+  }
+}
+.ta-calculator {
+  &:before {
+    content: $ta-calculator;
+  }
+}
+.ta-calendar1 {
+  &:before {
+    content: $ta-calendar1;
+  }
+}
+.ta-newspaper {
+  &:before {
+    content: $ta-newspaper;
+  }
+}
+.ta-chart-pizza {
+  &:before {
+    content: $ta-chart-pizza;
+  }
+}
+.ta-megaphone {
+  &:before {
+    content: $ta-megaphone;
+  }
+}
+.ta-organograma {
+  &:before {
+    content: $ta-organograma;
+  }
+}
+.ta-etapas {
+  &:before {
+    content: $ta-etapas;
+  }
+}
+.ta-play {
+  &:before {
+    content: $ta-play;
+  }
+}
+.ta-panel-solar {
+  &:before {
+    content: $ta-panel-solar;
+  }
+}
+.ta-drums {
+  &:before {
+    content: $ta-drums;
+  }
+}
+.ta-raio {
+  &:before {
+    content: $ta-raio;
+  }
+}
+.ta-cataventos {
+  &:before {
+    content: $ta-cataventos;
+  }
+}
+.ta-fire {
+  &:before {
+    content: $ta-fire;
+  }
+}
+.ta-helmet {
+  &:before {
+    content: $ta-helmet;
+  }
+}
+.ta-balance {
+  &:before {
+    content: $ta-balance;
+  }
+}
+.ta-gavel {
+  &:before {
+    content: $ta-gavel;
+  }
+}
+.ta-plant {
+  &:before {
+    content: $ta-plant;
+  }
+}
+.ta-hand-plant {
+  &:before {
+    content: $ta-hand-plant;
+  }
+}
+.ta-medidor {
+  &:before {
+    content: $ta-medidor;
+  }
+}
+.ta-reciclagem {
+  &:before {
+    content: $ta-reciclagem;
+  }
+}
+.ta-spark {
+  &:before {
+    content: $ta-spark;
+  }
+}
+

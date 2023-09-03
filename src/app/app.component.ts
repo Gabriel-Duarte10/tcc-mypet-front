@@ -3,6 +3,7 @@ import authRoutes from '../core/routes/auth-routes';
 import featuresRoutes from '../core/routes/features-routes';
 import { AuthService } from 'src/core/services/auth.service';
 import { Router } from '@angular/router';
+import { SidebarItem } from 'src/core/components/sidebar/sidebar';
 
 @Component({
   selector: 'app-root',

@@ -20,10 +20,18 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AlertComponent } from './components/alert/alert.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import { HeaderComponent } from './components/header/header.component';
+import { UserMenuComponent } from './components/header/user-menu/user-menu.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 const components = [
   LoadingComponent,
-  AlertComponent
+  AlertComponent,
+  LoadingComponent,
+  HeaderComponent,
+  UserMenuComponent,
+  SidebarComponent
 ];
 const modules = [
   CommonModule,
@@ -48,13 +56,14 @@ const modules = [
   CdkAccordionModule,
   DragDropModule,
   MatExpansionModule,
-  MatPaginatorModule
+  MatPaginatorModule,
+  MatMenuModule
 ];
 
 @NgModule({
   imports: [...modules],
   providers: [httpInterceptorProviders],
-  declarations: [...components, LoadingComponent],
+  declarations: [...components],
   exports: [...components, ...modules],
 })
 export class CoreModule { }

@@ -1,0 +1,14 @@
+<div class="align-items-center">
+  <img src="/assets/images/default_avatar.png" class="avatar rounded-circle" width="50" height="50" alt="" />
+  <span class="font-weight-500 fs-16 p-2">{{ user.name }}</span>
+  <button mat-icon-button [matMenuTriggerFor]="userMenu">
+    <i id="arrow-down" class="ta-arrow-down text-white fs-32 align-middle"></i>
+  </button>
+</div>
+
+<mat-menu #userMenu="matMenu" class="shadow-sm">
+  <button  mat-menu-item (click)="logout()">
+    <i class=" fs-22 pr-2 align-middle"></i>
+    Logout
+  </button>
+</mat-menu>

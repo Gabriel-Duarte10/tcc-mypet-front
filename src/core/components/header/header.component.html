@@ -1,0 +1,42 @@
+<header class="dashboard-header">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12" style="padding-left: 0;">
+        <div class="d-flex px-sm-0 px-0 text-white mx-sm-0">
+
+          <div id="logo" class="d-flex">
+            <div class="d-flex align-items-center justify-content-center spaceLogo">
+              <a routerLink="/dashboard">
+                <div class="logo"></div>
+              </a>
+            </div>
+            <div class="b-height2"></div>
+            <div id="headerText" class="d-flex flex-column justify-content-center title-size pr-4 px-sm-4">
+              <span class="fs-18 font-weight-700 font-raleway">
+                Gestor de Mudanças
+              </span>
+
+
+              <span class="fs-15 font-weight-500">
+                <ol class="breadcrumb p-0 m-0 bg-transparent">
+                  <li class="breadcrumb-item" *ngFor="let breadcrumb of breadcrumbService.breadcrumbs | async">
+                    <a (click)="navigateTo(breadcrumb.url)" class="text-white">{{ breadcrumb.label }}</a>
+                  </li>
+                </ol>
+              </span>
+            </div>
+          </div>
+
+          <div id="headerMenu" class="d-flex align-items-center ml-auto user-menu-container">
+            <ul class="navbar-nav d-flex flex-row cursor-pointer align-items-center">
+              <li class="px-sm-2">
+                <user-menu></user-menu>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
