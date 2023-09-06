@@ -16,7 +16,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'reported-ads',
+        redirectTo: 'features',
         pathMatch: 'full'
       },
       {

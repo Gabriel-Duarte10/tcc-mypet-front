@@ -1,0 +1,14 @@
+<div class="content d-flex justify-content-between align-items-center">
+  <div class="tabs d-flex">
+    <div class="tab rounded-top-1 position-relative"
+         [routerLinkActive]="['active']"
+         *ngFor="let tab of itens"
+         [routerLink]="tab.route"
+    >
+      <a class="text-decoration-none"
+      >
+        {{tab.title}}
+      </a>
+    </div>
+  </div>
+</div>

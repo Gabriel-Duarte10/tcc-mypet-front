@@ -1,0 +1,29 @@
+.content{
+  border-bottom: 1px solid #D0D7DD;
+
+  .tabs{
+    .tab{
+      border: 1px solid #D0D7DD;
+      border-bottom: none;
+      cursor: pointer;
+      background-color: #fff;
+      font-size: 16px; /* Aumenta o tamanho da fonte dos itens do navbar */
+      padding: 16px 16px; /* Aumenta o padding para dar mais espaço em torno dos itens */
+
+      a {
+        color: #868686; /* Altera a cor do link */
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+      }
+    }
+    .active{
+      color: #0F3DDE;
+
+      a {
+        color: #0F3DDE;  /* Especificamente altera a cor do link na aba ativa */
+      }
+    }
+  }
+}

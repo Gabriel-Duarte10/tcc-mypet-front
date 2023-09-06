@@ -24,6 +24,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { UserMenuComponent } from './components/header/user-menu/user-menu.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 const components = [
   LoadingComponent,
@@ -31,7 +32,8 @@ const components = [
   LoadingComponent,
   HeaderComponent,
   UserMenuComponent,
-  SidebarComponent
+  SidebarComponent,
+  NavbarComponent
 ];
 const modules = [
   CommonModule,

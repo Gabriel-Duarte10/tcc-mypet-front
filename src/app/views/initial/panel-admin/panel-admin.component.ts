@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Navbar } from 'src/core/components/navbar/navbar';
 
 @Component({
   selector: 'app-panel-admin',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class PanelAdminComponent {
 
+  navbarItens: Navbar[] = [
+    { title: "Caracteristicas", route: "features" },
+    { title: "Tipos de Animais", route: "animal-types" },
+    { title: "Raças", route: "breeds" },
+    { title: "Tamanho", route: "sizes" },
+  ];
 }
