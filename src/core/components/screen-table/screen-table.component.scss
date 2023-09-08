@@ -1,0 +1,65 @@
+.table-container {
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header h2 {
+  color: #000;
+  font-family: 'Raleway', sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.header button, .actions button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* Espaçamento entre o ícone e o texto */
+}
+
+.header button {
+  width: 210px;
+  height: 48px;
+  background-color: #FF8A00;
+  color: #FFF;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12.282px;
+  font-weight: 700;
+  border-radius: 0.25rem;
+  border: none;
+}
+
+table {
+  width: 100%;
+  box-shadow: none; /* Removendo a sombra */
+}
+
+.mat-cell, .mat-header-cell {
+  color: #000;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+
+.btn-edit{
+  width: 75px;
+  height: 29px;
+  background-color: #545454;
+  color: #FFF;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  border: none;
+  border-radius: 0.25rem;
+}
+
+.actions {
+  width: 150px; /* ou qualquer valor que você achar adequado */
+}

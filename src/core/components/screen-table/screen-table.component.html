@@ -1,0 +1,32 @@
+<div *ngIf="config != null" class="table-container">
+  <div class="header">
+    <h2>{{config.title}}</h2>
+    <button mat-raised-button color="primary" style="margin-right: 4%;" [routerLink]="config.rotaAdd">
+      <i class="ta-times-circle fs-18"></i>
+      <span>{{config.titleButton}}</span>
+    </button>
+  </div>
+
+  <table mat-table [dataSource]="config.items" matSort class="mat-elevation-z8">
+    <!-- Dynamic Columns -->
+    <ng-container *ngFor="let key of config.columnKeys; let i = index" [matColumnDef]="key">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{config.headers[i]}} </th>
+      <td mat-cell *matCellDef="let element"> {{getProperty(element, key)}} </td>
+    </ng-container>
+
+
+    <!-- Edit Column -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef style="width: 150px;"> Actions </th>
+      <td mat-cell *matCellDef="let element" class="actions">
+        <button class="btn-edit" mat-button [routerLink]="config.rotaEdit + '/' + element.id">
+          <i class="ta-edit "></i>
+          <span>Editar</span>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
