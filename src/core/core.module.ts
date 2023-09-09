@@ -25,6 +25,8 @@ import { UserMenuComponent } from './components/header/user-menu/user-menu.compo
 import { MatMenuModule } from '@angular/material/menu';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { ScreenTableComponent } from './components/screen-table/screen-table.component';
+import {MatSort, MatSortModule} from '@angular/material/sort';
 
 const components = [
   LoadingComponent,
@@ -33,7 +35,8 @@ const components = [
   HeaderComponent,
   UserMenuComponent,
   SidebarComponent,
-  NavbarComponent
+  NavbarComponent,
+  ScreenTableComponent
 ];
 const modules = [
   CommonModule,
@@ -59,13 +62,14 @@ const modules = [
   DragDropModule,
   MatExpansionModule,
   MatPaginatorModule,
-  MatMenuModule
+  MatMenuModule,
+  MatSortModule
 ];
 
 @NgModule({
   imports: [...modules],
   providers: [httpInterceptorProviders],
-  declarations: [...components],
+  declarations: [...components, ],
   exports: [...components, ...modules],
 })
 export class CoreModule { }
