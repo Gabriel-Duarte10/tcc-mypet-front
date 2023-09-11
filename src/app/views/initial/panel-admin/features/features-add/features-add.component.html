@@ -1,0 +1,14 @@
+<h2 class="mt-4">Nova Categoria</h2>
+<h3 class="mt-4">Categoria</h3>
+
+<form [formGroup]="form">
+  <input formControlName="categoryName" placeholder="Nome da categoria">
+  <div class="button-container mt-4">
+    <button (click)="onSave()" class="button-save" mat-raised-button color="primary">
+      <span>Salvar</span>
+    </button>
+    <button (click)="onCancel()" class="button-cancelar" mat-raised-button color="primary">
+      <span>Cancelar</span>
+    </button>
+  </div>
+</form>

@@ -4,13 +4,13 @@ import { environment } from '../../../../../core/environments/environment';
 import { Observable } from 'rxjs';
 
 export interface SizeDTO {
-  Id: number;
-  Name: string;
+  id: number;
+  name: string;
 }
 
 export interface SizeRequest {
-  Name: string;
-  AdministratorId: number;
+  name: string;
+  administratorId: number;
 }
 
 @Injectable({

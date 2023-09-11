@@ -1,0 +1,14 @@
+<h2 class="mt-4">Editar Tipo de Animal</h2>
+<h3 class="mt-4">Tipo</h3>
+
+<form [formGroup]="form">
+  <input formControlName="typeName" placeholder="Nome do tipo de animal">
+  <div class="button-container mt-4">
+    <button (click)="onSave()" class="button-save" mat-raised-button color="primary">
+      <span>Salvar</span>
+    </button>
+    <button (click)="onDelete()" class="button-cancelar" mat-raised-button color="primary">
+      <span>Excluir</span>
+    </button>
+  </div>
+</form>

@@ -21,8 +21,8 @@ export class BreedsComponent implements OnInit {
         headers: ['Id', 'Name', 'Tipo de Animal'],
         columnKeys: ['id', 'name', 'animalType.name'],
         items: data,
-        rotaAdd: '/breeds/add',
-        rotaEdit: '/breeds/edit'
+        rotaAdd: '/initial/panel-admin/breeds/add',
+        rotaEdit: '/initial/panel-admin/breeds/edit'
       };
     });
   }

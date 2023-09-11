@@ -24,8 +24,8 @@ export class FeaturesComponent {
         headers: ['Id', 'Name'],
         columnKeys: ['id', 'name'],
         items: data,
-        rotaAdd: '/add-route',
-        rotaEdit: '/edit-route'
+        rotaAdd: '/initial/panel-admin/features/add',
+        rotaEdit: '/initial/panel-admin/features/edit'
       };
     });
   }

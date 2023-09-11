@@ -1,0 +1,22 @@
+<h2 class="mt-4">Nova Raça</h2>
+<h3 class="mt-4">Raça</h3>
+
+<form [formGroup]="form">
+  <input formControlName="breedName" placeholder="Nome da raça">
+  <div class="select-container">
+    <select formControlName="animalTypeId">
+      <option value="" disabled selected>Selecione uma opção</option>
+      <option *ngFor="let type of animalTypes" [value]="type.id">{{ type.name }}</option>
+    </select>
+    <i id="arrow-down" class="ta-arrow-down"></i>
+  </div>
+
+  <div class="button-container mt-4">
+    <button (click)="onSave()" class="button-save" mat-raised-button color="primary">
+      <span>Salvar</span>
+    </button>
+    <button (click)="onCancel()" class="button-cancelar" mat-raised-button color="primary">
+      <span>Cancelar</span>
+    </button>
+  </div>
+</form>

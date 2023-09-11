@@ -4,13 +4,13 @@ import { environment } from '../../../../../core/environments/environment';
 import { Observable } from 'rxjs';
 
 export interface CharacteristicDTO {
-  Id: number;
-  Name: string;
+  id: number;
+  name: string;
 }
 
 export interface CharacteristicRequest {
-  Name: string;
-  AdministratorId: number;
+  name: string;
+  administratorId: number;
 }
 
 @Injectable({

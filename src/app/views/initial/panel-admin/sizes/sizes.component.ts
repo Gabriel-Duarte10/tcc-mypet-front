@@ -21,8 +21,8 @@ export class SizesComponent implements OnInit {
         headers: ['Id', 'Name'],
         columnKeys: ['id', 'name'],
         items: data,
-        rotaAdd: '/sizes/add',
-        rotaEdit: '/sizes/edit'
+        rotaAdd: '/initial/panel-admin/sizes/add',
+        rotaEdit: '/initial/panel-admin/sizes/edit'
       };
     });
   }

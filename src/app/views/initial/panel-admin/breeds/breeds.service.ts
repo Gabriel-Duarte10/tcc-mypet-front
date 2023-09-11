@@ -5,15 +5,15 @@ import { Observable } from 'rxjs';
 import { AnimalTypeDTO } from '../animal-types/animal-types.service';
 
 export interface BreedDTO {
-  Id: number;
-  Name: string;
-  AnimalType: AnimalTypeDTO;
+  id: number;
+  name: string;
+  animalType: AnimalTypeDTO;
 }
 
 export interface BreedRequest {
-  Name: string;
-  AdministratorId: number;
-  AnimalTypeId: number;
+  name: string;
+  administratorId: number;
+  animalTypeId: number;
 }
 
 @Injectable({

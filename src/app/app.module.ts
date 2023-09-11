@@ -18,6 +18,8 @@ import { AlertComponent } from '../core/components/alert/alert.component';
 import { MeuDashboardComponent } from './views/initial/meu-dashboard/meu-dashboard.component';
 import { InitialComponent } from './views/initial/initial.component';
 import { BusinessAnalysisComponent } from './views/initial/business-analysis/business-analysis.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -29,9 +31,12 @@ import { BusinessAnalysisComponent } from './views/initial/business-analysis/bus
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
+    FormsModule,
     HttpClientModule,
-    CoreModule
+    ReactiveFormsModule,
+    CoreModule,
+    RouterModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

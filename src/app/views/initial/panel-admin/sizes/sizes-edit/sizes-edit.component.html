@@ -1,0 +1,15 @@
+<h2 class="mt-4">Editar Tamanho</h2>
+<h3 class="mt-4">Tamanho</h3>
+
+<form [formGroup]="form">
+  <input formControlName="sizeName" placeholder="Nome do tamanho">
+  <div class="button-container mt-4">
+    <button (click)="onSave()" class="button-save" mat-raised-button color="primary">
+      <span>Salvar</span>
+    </button>
+    <button (click)="onDelete()" class="button-cancelar" mat-raised-button color="primary">
+      <span>Excluir</span>
+    </button>
+  </div>
+</form>
+

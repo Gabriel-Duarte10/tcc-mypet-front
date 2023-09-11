@@ -20,8 +20,8 @@ export class AnimalTypesComponent implements OnInit {
         headers: ['Id', 'Name'],
         columnKeys: ['id', 'name'],
         items: data,
-        rotaAdd: '/animal-types/add',
-        rotaEdit: '/animal-types/edit'
+        rotaAdd: '/initial/panel-admin/animal-types/add',
+        rotaEdit: '/initial/panel-admin/animal-types/edit'
       };
     });
   }
