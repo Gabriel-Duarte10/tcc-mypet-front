@@ -1,1 +1,59 @@
-<p>animals-dashboard works!</p>
+<h2>Dashboard de Animais</h2>
+<form [formGroup]="form">
+<div class="dashboard-container">
+      <div class="content">
+        <div class="filters">
+          <div class="select-container">
+            <select formControlName="animalType">
+              <option value="" disabled>Selecione um tipo de animal</option>
+              <option *ngFor="let type of animalTypes" [value]="type.id">{{ type.name }}</option>
+            </select>
+            <i id="arrow-down" class="ta-arrow-down"></i>
+          </div>
+
+          <div class="select-container">
+            <select formControlName="breed">
+              <option value="" disabled>Selecione uma Raça</option>
+              <option *ngFor="let breed of breeds" [value]="breed.id">{{ breed.name }}</option>
+            </select>
+            <i id="arrow-down" class="ta-arrow-down"></i>
+          </div>
+
+          <div class="select-container">
+            <select formControlName="characteristics">
+              <option value="" disabled>Selecione uma Característica</option>
+              <option *ngFor="let characteristic of characteristics" [value]="characteristic.id">{{ characteristic.name }}</option>
+            </select>
+            <i id="arrow-down" class="ta-arrow-down"></i>
+          </div>
+
+          <div class="select-container">
+            <select formControlName="size">
+              <option value="" disabled>Selecione um Porte</option>
+              <option *ngFor="let size of sizes" [value]="size.id">{{ size.name }}</option>
+            </select>
+            <i id="arrow-down" class="ta-arrow-down"></i>
+          </div>
+
+          <div class="select-container">
+            <select formControlName="status">
+              <option value="" disabled>Selecione um Status</option>
+              <option value="adopted">Adotado</option>
+              <option value="available">Disponível</option>
+            </select>
+            <i id="arrow-down" class="ta-arrow-down"></i>
+          </div>
+
+          <div class="age-range">
+            <input type="number" formControlName="minAge" placeholder="Idade mínima">
+            <input type="number" formControlName="maxAge" placeholder="Idade máxima">
+          </div>
+        </div>
+
+        <div class="main-content">
+          <div style="background-color: aqua; width: 100%; height: 100%;">
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
