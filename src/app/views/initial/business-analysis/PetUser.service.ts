@@ -27,6 +27,8 @@ export interface UserDto {
   number: number;
   state: string;
   city: string;
+  longitude: string;
+  latitude: string;
 }
 
 @Injectable({
