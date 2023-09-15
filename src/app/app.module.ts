@@ -20,6 +20,7 @@ import { InitialComponent } from './views/initial/initial.component';
 import { BusinessAnalysisComponent } from './views/initial/business-analysis/business-analysis.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { GeoDataService } from 'src/core/services/geo-data.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,7 @@ import { RouterModule } from '@angular/router';
     RouterModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [GeoDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -117,6 +117,7 @@ export class AuthService {
 
   async logout(redirect?: string) {
     this.clearToken();
+    document.location.reload();
   }
   saveToken(token: string) {
     if(token != null)

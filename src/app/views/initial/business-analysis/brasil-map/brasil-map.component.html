@@ -1,0 +1,57 @@
+<div class="dashboard-container">
+
+  <!-- Mapa e Informações -->
+  <div class="map-and-info">
+
+    <!-- Mapa -->
+
+    <div class="map-container">
+      <h2 class="map-title">{{ title }}</h2>
+      <button *ngIf="viewingCities == true" class="back-button" (click)="resetView()">
+        <i class="ta-arrow-left"></i> Voltar
+      </button>
+      <div id="chartdiv" class="map"></div>
+    </div>
+
+
+
+    <!-- Informações à Direita -->
+    <div class="info-container">
+
+      <!-- Título e Filtros -->
+      <div class="info-header">
+        <h3>Número de Animais</h3>
+        <p>Filtrado por:</p>
+        <div class="filters-list">
+          <span *ngFor="let filtro of listFiltros">{{ filtro.nome }}</span>
+        </div>
+      </div>
+
+      <!-- Estados e Cores -->
+      <div *ngIf="viewingCities == false" class="states-list">
+        <div class="state-item" *ngFor="let item of statesWithColors">
+          <div class="state-color" [style.background-color]="item.color"
+            (mouseover)="focusOnMapObject(item.state.properties.name)" (mouseout)="resetZoom()"
+            (click)="openState(item.state.properties.name)"></div>
+          <p (mouseover)="focusOnMapObject(item.state.properties.name)" (mouseout)="resetZoom()"
+            (click)="openState(item.state.properties.name)">{{
+            item.state.properties.name }}</p>
+        </div>
+      </div>
+
+      <div *ngIf="viewingCities == true" class="states-list">
+        <div class="state-item" *ngFor="let item of citiesWithColors">
+          <div class="state-color" [style.background-color]="item.color"
+            (mouseover)="focusOnMapObject(item.city.properties.name)" (mouseout)="resetZoom()"></div>
+          <p (mouseover)="focusOnMapObject(item.city.properties.name)" (mouseout)="resetZoom()">{{
+            item.city.properties.name }}</p>
+        </div>
+      </div>
+
+
+
+    </div>
+
+  </div>
+
+</div>

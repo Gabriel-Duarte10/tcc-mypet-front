@@ -6,6 +6,7 @@ import { AnimalsDashboardComponent } from './animals-dashboard/animals-dashboard
 import { UsersDashboardComponent } from './users-dashboard/users-dashboard.component';
 import { CoreModule } from 'src/core/core.module';
 import { BusinessAnalysisComponent } from './business-analysis.component';
+import { BrasilMapComponent } from './brasil-map/brasil-map.component';
 
 
 @NgModule({
@@ -13,6 +14,7 @@ import { BusinessAnalysisComponent } from './business-analysis.component';
     BusinessAnalysisComponent,
     AnimalsDashboardComponent,
     UsersDashboardComponent,
+    BrasilMapComponent,
   ],
   imports: [
     CommonModule,

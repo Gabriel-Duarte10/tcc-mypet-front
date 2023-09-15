@@ -5,9 +5,14 @@ h2 {
   font-style: normal;
   font-weight: 600;
   line-height: normal;
-  height: 36px;
+  height: auto;
   flex-shrink: 0;
-  margin-bottom: -1%;
+  border: 2px solid #D0D7DD;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom: none;
+  padding: 10px;
+  margin: 0px;
 }
 .dashboard-container {
   display: flex;
@@ -18,9 +23,15 @@ h2 {
   .content {
     display: flex;
     width: 100%;
-
+    border: 2px solid #D0D7DD;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 0 20px 0px 20px;  //
+    border-top: 2px solid #D0D7DD;
     .filters {
-      flex: 0 0 20%; // Ocupa 20% do espaço
+      width: 25%;
+      padding-right: 30px; // Ajuste conforme o valor desejado
+      border-right: 2px solid #D0D7DD;
 
       display: flex;
       flex-direction: column;
@@ -62,9 +73,12 @@ h2 {
     }
 
     .main-content {
-      flex: 0 0 80%; // Ocupa 80% do espaço
-      background-color: aqua;
+      width: 75%;
       height: 100%;
+      border-right: 2px solid #D0D7DD;
+      padding-right: 20px;
+      border-right: none;
+
     }
   }
 }
@@ -80,4 +94,39 @@ input {
   flex-shrink: 0;
   border: 1px solid #D0D7DD;
   padding-left: 15px; /* Ajuste este valor conforme necessário */
+  padding-right: 8px;
+  width: 3%;
+}
+.date-range {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; // Adicione esta linha
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.custom-button {
+  background-color: transparent;
+  border: 1px solid #545454;
+  color: #545454;
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;  // Espaço entre o ícone e o texto
+  margin-left: 10px; // Espaço à esquerda do botão
+  border-radius: 7px;
+
+  &:hover {
+    background-color: rgba(84, 84, 84, 0.1);  // Altere conforme o efeito de hover desejado
+  }
+
+  i {
+    margin-right: 5px; // Espaço entre o ícone e o texto
+  }
+}
+.inputs-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }

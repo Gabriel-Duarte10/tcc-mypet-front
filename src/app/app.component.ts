@@ -4,6 +4,7 @@ import featuresRoutes from '../core/routes/features-routes';
 import { AuthService } from 'src/core/services/auth.service';
 import { Router } from '@angular/router';
 import { SidebarItem } from 'src/core/components/sidebar/sidebar';
+import { GeoDataService } from 'src/core/services/geo-data.service';
 
 @Component({
   selector: 'app-root',
@@ -12,9 +13,10 @@ import { SidebarItem } from 'src/core/components/sidebar/sidebar';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private auth: AuthService, readonly router: Router) {}
+  constructor(private auth: AuthService, readonly router: Router, private geoData: GeoDataService) {}
 
   ngOnInit(): void {
+    this.geoData.preloadData();
     this.auth.checkAuth().subscribe(
       (res) => {
         if (res) {
