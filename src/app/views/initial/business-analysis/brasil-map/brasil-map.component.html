@@ -23,7 +23,7 @@
         <h3>Número de Animais</h3>
         <p>Filtrado por:</p>
         <div class="filters-list">
-          <span *ngFor="let filtro of listFiltros">{{ filtro.nome }}</span>
+          <span *ngFor="let filtro of listFiltros">{{ filtro }}</span>
         </div>
       </div>
 
@@ -34,19 +34,21 @@
             (mouseover)="focusOnMapObject(item.state.properties.name)" (mouseout)="resetZoom()"
             (click)="openState(item.state.properties.name)"></div>
           <p (mouseover)="focusOnMapObject(item.state.properties.name)" (mouseout)="resetZoom()"
-            (click)="openState(item.state.properties.name)">{{
-            item.state.properties.name }}</p>
+            (click)="openState(item.state.properties.name)">
+            {{item.state.properties.name }}  ({{ statePetCount[item.state.properties.sigla] || 0 }})</p>
         </div>
       </div>
 
       <div *ngIf="viewingCities == true" class="states-list">
         <div class="state-item" *ngFor="let item of citiesWithColors">
-          <div class="state-color" [style.background-color]="item.color"
-            (mouseover)="focusOnMapObject(item.city.properties.name)" (mouseout)="resetZoom()"></div>
-          <p (mouseover)="focusOnMapObject(item.city.properties.name)" (mouseout)="resetZoom()">{{
-            item.city.properties.name }}</p>
+            <div class="state-color" [style.background-color]="item.color"
+                (mouseover)="focusOnMapObject(item.city.properties.name); displayPetsInCity(item.city.properties.name)"
+                (mouseout)="resetZoom(); clearPetsFromMap()"></div>
+            <p (mouseover)="focusOnMapObject(item.city.properties.name); displayPetsInCity(item.city.properties.name)"
+                (mouseout)="resetZoom(); clearPetsFromMap()">
+                {{item.city.properties.name }} ({{ cityPetCount[item.city.properties.name] || 0 }})</p>
         </div>
-      </div>
+    </div>
 
 
 

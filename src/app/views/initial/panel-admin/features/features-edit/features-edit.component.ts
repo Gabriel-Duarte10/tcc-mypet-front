@@ -44,10 +44,10 @@ export class FeaturesEditComponent implements OnInit {
 
     this.characteristicsService.update(this.featureId, request).subscribe(
       response => {
-        this.openModalSuccess('Categoria atualizada com sucesso!');
+        this.openModalSuccess('Caracteristica atualizada com sucesso!');
       },
       error => {
-        this.openModalError('Erro ao atualizar categoria.');
+        this.openModalError('Erro ao atualizar Caracteristica.');
       }
     );
   }
@@ -55,10 +55,10 @@ export class FeaturesEditComponent implements OnInit {
   onDelete() {
     this.characteristicsService.delete(this.featureId).subscribe(
       () => {
-        this.openModalSuccess('Categoria excluída com sucesso!');
+        this.openModalSuccess('Caracteristica excluída com sucesso!');
       },
       error => {
-        this.openModalError('Erro ao excluir categoria.');
+        this.openModalError('Erro ao excluir Caracteristica.');
       }
     );
   }

@@ -36,10 +36,10 @@ export class FeaturesAddComponent implements OnInit {
 
     this.characteristicsService.create(request).subscribe(
       response => {
-        this.openModalSuccess('Categoria criada com sucesso!');
+        this.openModalSuccess('Caracteristica criada com sucesso!');
       },
       error => {
-        this.openModalError('Erro ao criar categoria.');
+        this.openModalError('Erro ao criar Caracteristica.');
       }
     );
   }

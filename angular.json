@@ -38,7 +38,16 @@
                 "node_modules"
               ]
             },
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "@amcharts/amcharts4",
+              "core-js",
+              "@babel/runtime/regenerator",
+              "raf",
+              "rgbcolor",
+              "polylabel",
+              "pdfmake/build/pdfmake.js"
+            ]
           },
           "configurations": {
             "production": {

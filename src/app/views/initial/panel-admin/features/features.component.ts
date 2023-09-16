@@ -19,8 +19,8 @@ export class FeaturesComponent {
   ngOnInit(): void {
     this.service.getAll().subscribe(data => {
       this.tableConfig = {
-        title: 'Categorias',
-        titleButton: 'Nova categoria',
+        title: 'Caracteristicas',
+        titleButton: 'Nova Caracteristica',
         headers: ['Id', 'Name'],
         columnKeys: ['id', 'name'],
         items: data,
