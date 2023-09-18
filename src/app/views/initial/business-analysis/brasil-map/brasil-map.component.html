@@ -30,7 +30,7 @@
       <!-- Estados e Cores -->
       <div *ngIf="viewingCities == false" class="states-list">
         <div class="state-item" *ngFor="let item of statesWithColors">
-          <div class="state-color" [style.background-color]="item.color"
+          <div  class="state-color" [style.background-color]="item.color"
             (mouseover)="focusOnMapObject(item.state.properties.name)" (mouseout)="resetZoom()"
             (click)="openState(item.state.properties.name)"></div>
           <p (mouseover)="focusOnMapObject(item.state.properties.name)" (mouseout)="resetZoom()"

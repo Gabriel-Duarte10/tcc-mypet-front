@@ -1,76 +1,101 @@
 <h2>Dashboard de Animais</h2>
 <form [formGroup]="form">
-<div class="dashboard-container">
-      <div class="content">
-        <div class="filters">
+  <div class="dashboard-container">
+    <div class="content">
+      <div class="filters">
+        <div class="filter-group">
+          <label>Tipo de Animal</label>
           <div class="select-container">
             <select formControlName="animalType">
               <option value="" disabled>Selecione um tipo de animal</option>
               <option *ngFor="let type of animalTypes" [value]="type.id">{{ type.name }}</option>
             </select>
-            <i id="arrow-down" class="ta-arrow-down"></i>
+            <!-- <i id="arrow-down" class="ta-arrow-down"></i> -->
           </div>
-
+        </div>
+        <div class="filter-group">
+          <label>Raça</label>
           <div class="select-container">
             <select formControlName="breed">
               <option value="" disabled>Selecione uma Raça</option>
               <option *ngFor="let breed of breeds" [value]="breed.id">{{ breed.name }}</option>
             </select>
-            <i id="arrow-down" class="ta-arrow-down"></i>
+            <!-- <i id="arrow-down" class="ta-arrow-down"></i> -->
           </div>
+        </div>
 
+        <div class="filter-group">
+          <label>Característica</label>
           <div class="select-container">
             <select formControlName="characteristics">
               <option value="" disabled>Selecione uma Característica</option>
-              <option *ngFor="let characteristic of characteristics" [value]="characteristic.id">{{ characteristic.name }}</option>
+              <option *ngFor="let characteristic of characteristics" [value]="characteristic.id">{{ characteristic.name
+                }}</option>
             </select>
-            <i id="arrow-down" class="ta-arrow-down"></i>
+            <!-- <i id="arrow-down" class="ta-arrow-down"></i> -->
           </div>
+        </div>
 
+        <div class="filter-group">
+          <label>Porte</label>
           <div class="select-container">
             <select formControlName="size">
               <option value="" disabled>Selecione um Porte</option>
               <option *ngFor="let size of sizes" [value]="size.id">{{ size.name }}</option>
             </select>
-            <i id="arrow-down" class="ta-arrow-down"></i>
+            <!-- <i id="arrow-down" class="ta-arrow-down"></i> -->
           </div>
+        </div>
 
+        <div class="filter-group">
+          <label>Status</label>
           <div class="select-container">
             <select formControlName="status">
               <option value="" disabled>Selecione um Status</option>
               <option value="adopted">Adotado</option>
               <option value="available">Disponível</option>
             </select>
-            <i id="arrow-down" class="ta-arrow-down"></i>
+            <!-- <i id="arrow-down" class="ta-arrow-down"></i> -->
           </div>
+        </div>
 
-          <div class="age-range">
+        <div class="filter-group dual-input-group">
+          <div class="age-group">
+            <label>Idade mínima</label>
             <input type="number" formControlName="minAge" placeholder="Idade mínima">
+          </div>
+          <div class="age-group">
+            <label>Idade máxima</label>
             <input type="number" formControlName="maxAge" placeholder="Idade máxima">
           </div>
-
-          <div class="age-range">
-            <input style="width: 200px !important;" type="date" name="startDate">
-            <input style="width: 200px !important;" type="date" name="endDate">
+        </div>
+        <div class="filter-group dual-input-group">
+          <div class="date-group">
+            <label>Data de início</label>
+            <input type="date" formControlName="startDate">
+          </div>
+          <div class="date-group">
+            <label>Data de término</label>
+            <input type="date" formControlName="endDate">
           </div>
         </div>
-
-        <div class="main-content">
-          <div class="date-range ml-2 mt-2">
-            <div class="inputs-container">
-
-
-            </div>
-
-            <!-- Botão -->
-            <button class="custom-button">
-              <i class="ta-times-circle fs-18"></i>
-              <span>Baixar</span>
-            </button>
+        <button mat-raised-button color="primary" class="filtro mt-3" (click)="onSubmit()">
+          <i class="ta-times-circle fs-18"></i>
+          <span>Filtrar</span>
+        </button>
+      </div>
+      <div class="main-content">
+        <div class="date-range ml-2 mt-2">
+          <div class="inputs-container">
           </div>
-
-          <app-brasil-map [petsList]="pets"></app-brasil-map>
+          <!-- Botão -->
+          <button class="custom-button">
+            <i class="ta-times-circle fs-18"></i>
+            <span>Baixar</span>
+          </button>
         </div>
+        <app-brasil-map [petsList]="pets" [listFiltros]="listFiltros"></app-brasil-map>
+      </div>
     </div>
   </div>
 </form>

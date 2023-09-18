@@ -2,18 +2,14 @@ h2 {
   color: var(--Cinza-escuro, #545454);
   font-family: Raleway;
   font-size: 26px;
-  font-style: normal;
   font-weight: 600;
-  line-height: normal;
-  height: auto;
-  flex-shrink: 0;
-  border: 2px solid #D0D7DD;
+  border: 2px solid #d0d7dd;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  border-bottom: none;
   padding: 10px;
   margin: 0px;
 }
+
 .dashboard-container {
   display: flex;
   flex-direction: column;
@@ -23,84 +19,84 @@ h2 {
   .content {
     display: flex;
     width: 100%;
-    border: 2px solid #D0D7DD;
+    border: 2px solid #d0d7dd;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
-    padding: 0 20px 0px 20px;  //
-    border-top: 2px solid #D0D7DD;
+    padding: 0 20px;
+
     .filters {
       width: 25%;
-      padding-right: 30px; // Ajuste conforme o valor desejado
-      border-right: 2px solid #D0D7DD;
-
+      padding-right: 30px;
+      border-right: 2px solid #d0d7dd;
       display: flex;
       flex-direction: column;
-      gap: 10px;
 
-      select {
-        width: 100%;
-        height: 46px;
-        border: 1px solid #D0D7DD;
-        padding-left: 15px;
-        appearance: none;
-        background-color: white;
-      }
+      .filter-group {
 
-      .select-container {
-        position: relative;
-        display: inline-block;
-        margin-top: 6%;
+        label {
+            display: block;
+            margin-top: 5%;
+        }
 
-        #arrow-down {
-          position: absolute;
-          right: 10px;
-          top: 50%;
-          transform: translateY(-50%);
-          pointer-events: none;
-          font-size: 24px;
+        select, .select-container {
+            width: 100%;
+        }
+
+        .select-container {
+            position: relative;
+
+            #arrow-down {
+                position: absolute;
+                right: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+                font-size: 24px;
+            }
         }
       }
 
-      .age-range {
+      .dual-input-group {
         display: flex;
-        gap: 10px;
-        margin-top: 6%;
+        justify-content: space-between;
+        gap: 20px;
 
-        input {
-          flex: 1;
+        .age-group, .date-group {
+            flex: 1;
+
+            label {
+                display: block;
+                margin-bottom: 5px;
+            }
+
+            input {
+                width: 100%;
+            }
         }
       }
     }
 
     .main-content {
       width: 75%;
-      height: 100%;
-      border-right: 2px solid #D0D7DD;
+      border-right: 2px solid #d0d7dd;
       padding-right: 20px;
-      border-right: none;
-
     }
   }
 }
 
-input {
-  color: #5D5D5D;
+input, select {
+  color: #5d5d5d;
   font-family: Poppins;
   font-size: 16px;
-  font-style: normal;
   font-weight: 500;
-  line-height: normal;
   height: 46px;
-  flex-shrink: 0;
-  border: 1px solid #D0D7DD;
-  padding-left: 15px; /* Ajuste este valor conforme necessário */
-  padding-right: 8px;
-  width: 3%;
+  border: 1px solid #d0d7dd;
+  padding-left: 15px;
 }
+
 .date-range {
   display: flex;
   align-items: center;
-  justify-content: space-between; // Adicione esta linha
+  justify-content: space-between;
   gap: 10px;
   margin-bottom: 10px;
 }
@@ -113,20 +109,40 @@ input {
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 5px;  // Espaço entre o ícone e o texto
-  margin-left: 10px; // Espaço à esquerda do botão
+  gap: 5px;
+  margin-left: 10px;
   border-radius: 7px;
 
   &:hover {
-    background-color: rgba(84, 84, 84, 0.1);  // Altere conforme o efeito de hover desejado
+    background-color: rgba(84, 84, 84, 0.1);
   }
 
   i {
-    margin-right: 5px; // Espaço entre o ícone e o texto
+    margin-right: 5px;
   }
 }
+
 .inputs-container {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.filtro {
+  width: 100%;
+  height: 48px;
+  background-color: #ff8a00;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  font-size: 12.282px;
+  font-weight: 700;
+  border-radius: 0.25rem;
+  border: none;
+}
+
+button, .actions button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }

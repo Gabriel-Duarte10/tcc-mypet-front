@@ -16,6 +16,8 @@ export interface PetDto {
   characteristicId: number;
   breedId: number;
   sizeId: number;
+  animalTypeId: number;
+  createdAt: string;
   user: UserDto;
 }
 export interface UserDto {

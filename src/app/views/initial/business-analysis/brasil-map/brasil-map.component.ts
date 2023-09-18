@@ -1,4 +1,4 @@
-import { Component, Input, NgZone, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, NgZone, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4maps from "@amcharts/amcharts4/maps";
 
@@ -11,7 +11,7 @@ import { PetDto } from '../PetUser.service';
   templateUrl: './brasil-map.component.html',
   styleUrls: ['./brasil-map.component.scss']
 })
-export class BrasilMapComponent implements OnInit, OnDestroy {
+export class BrasilMapComponent implements OnInit, OnDestroy, OnChanges {
   private chart!: am4maps.MapChart;
   private hitListener: any;
   private polygonSeries!: am4maps.MapPolygonSeries;
@@ -19,11 +19,16 @@ export class BrasilMapComponent implements OnInit, OnDestroy {
   public mapaBrasil: any;
   public statesWithColors: { state: any, color: string, petCount: number }[] = [];
   public citiesWithColors: { city: any, color: string, petCount: number }[] = [];
+  private initialStateColors: { [stateName: string]: string } = {};
+  private initialCityColors: { [cityName: string]: string } = {};
+
   public viewingCities: boolean = false;
   @Input() petsList: PetDto[] = [];
   @Input() listFiltros: string[] = [];
   public statePetCount: { [stateName: string]: number } = {};
   public cityPetCount: { [cityName: string]: number } = {};
+  private labelSeries?: am4maps.MapImageSeries;
+
 
   constructor(private zone: NgZone, private geoDataService: GeoDataService, private cdRef: ChangeDetectorRef) { }
 
@@ -34,6 +39,17 @@ export class BrasilMapComponent implements OnInit, OnDestroy {
   async ngOnDestroy() {
     this.disposeMap();
   }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['petsList'] && this.chart) {
+      this.updatePetCountsAndColors();
+      this.chart.invalidateData();
+    }
+    if (changes['listFiltros']) {
+      //console.log('Filtros atualizados:', this.listFiltros);
+    }
+  }
+
 
   /**
    * Initialize the map with default settings
@@ -48,12 +64,16 @@ export class BrasilMapComponent implements OnInit, OnDestroy {
         this.mapaBrasil = await this.geoDataService.getGeoData('brazil-states.geojson');
         this.statesWithColors = this.mapaBrasil.features.map((feature: any) => {
           const stateName = feature.properties.sigla;
+          if (!this.initialStateColors[stateName]) {
+            this.initialStateColors[stateName] = this.randomColor();
+          }
           return {
             state: feature,
-            color: this.randomColor(),
+            color: this.initialStateColors[stateName],
             petCount: this.statePetCount[stateName] || 0
           };
         });
+
         this.statesWithColors.sort((a, b) => b.petCount - a.petCount);
         this.cdRef.detectChanges();
 
@@ -72,6 +92,8 @@ export class BrasilMapComponent implements OnInit, OnDestroy {
    * Dispose the map on component destruction
    */
   disposeMap() {
+    //console.log('Disposing map...');
+
     this.zone.runOutsideAngular(() => {
       if (this.chart) {
         if (this.polygonSeries && this.polygonSeries.mapPolygons && this.polygonSeries.mapPolygons.template) {
@@ -86,6 +108,7 @@ export class BrasilMapComponent implements OnInit, OnDestroy {
    * Set up main properties of the map
    */
   setupMapProperties() {
+    //console.log('Setting up map properties...');
     this.chart.geodata = this.mapaBrasil;
   }
 
@@ -93,6 +116,7 @@ export class BrasilMapComponent implements OnInit, OnDestroy {
    * Set up the polygon series for the map
    */
   setupPolygonSeries() {
+    //console.log('Setting up polygon series...');
     // Mapeamento entre polígonos e seus rótulos
     const polygonToLabelMap: Map<am4maps.MapPolygon, am4core.Label> = new Map();
 
@@ -114,8 +138,11 @@ export class BrasilMapComponent implements OnInit, OnDestroy {
 
 
     // Configuração da série de rótulos
-    let labelSeries = this.chart.series.push(new am4maps.MapImageSeries());
-    let labelTemplate = labelSeries.mapImages.template.createChild(am4core.Label);
+    this.labelSeries = this.chart.series.push(new am4maps.MapImageSeries());
+
+    this.labelSeries.mapImages.clear();
+
+    let labelTemplate = this.labelSeries.mapImages.template.createChild(am4core.Label);
     labelTemplate.horizontalCenter = "middle";
     labelTemplate.verticalCenter = "middle";
     labelTemplate.fontSize = 15;
@@ -124,19 +151,22 @@ export class BrasilMapComponent implements OnInit, OnDestroy {
 
     // Populando com dados
     this.polygonSeries.mapPolygons.template.events.on("validated", (event) => {
+
       const polygon = event.target;
       const stateName = (polygon.dataItem.dataContext as any)?.sigla;
       if (stateName) {
         const count = this.statePetCount[stateName] || 0;
-        let label = labelSeries.mapImages.create();
-        label.latitude = polygon.visualLatitude;
-        label.longitude = polygon.visualLongitude;
-        const labelText = (label.children.getIndex(0) as am4core.Label);
-        labelText.text = count.toString();
+        if (this.labelSeries) {
+          let label = this.labelSeries.mapImages.create();
+          label.latitude = polygon.visualLatitude;
+          label.longitude = polygon.visualLongitude;
+          const labelText = (label.children.getIndex(0) as am4core.Label);
+          labelText.text = count.toString();
+          // Definindo a cor do rótulo com base na cor de fundo
+          const backgroundColor = (polygon as any).customColor; // Obter a cor de fundo do polígono
+          labelText.fill = am4core.color(this.getLabelColor(backgroundColor));
+        }
 
-        // Definindo a cor do rótulo com base na cor de fundo
-        const backgroundColor = (polygon as any).customColor; // Obter a cor de fundo do polígono
-        labelText.fill = am4core.color(this.getLabelColor(backgroundColor));
       }
     });
 
@@ -146,21 +176,36 @@ export class BrasilMapComponent implements OnInit, OnDestroy {
    * Set up map events
    */
   setupMapEvents() {
+    //console.log('Setting up map events...');
     this.polygonSeries.mapPolygons.template.events.on("hit", this.hitListener = async (event: any) => {
+
+      const stateData: any = event.target.dataItem.dataContext;
+      const stateCode = stateData.codigo_ibg;
+      if(stateCode === '31') {
+        return;
+      }
       const zoomAnimation = this.chart.zoomToMapObject(event.target);
       zoomAnimation.events.on("animationended", async () => {
-        const stateData: any = event.target.dataItem.dataContext;
-        const stateCode = stateData.codigo_ibg;
+
+        if (this.labelSeries) {
+          this.labelSeries.mapImages.clear();
+        }
         const citiesData = await this.geoDataService.getGeoData(`geojs-${stateCode}-mun.json`);
         this.chart.geodata = citiesData;
+
         this.citiesWithColors = citiesData.features.map((feature: any) => {
+
           const cityName = feature.properties.name;
+          if (!this.initialCityColors[cityName]) {
+            this.initialCityColors[cityName] = this.randomColor();
+          }
           return {
             city: feature,
-            color: this.randomColor(),
+            color: this.initialCityColors[cityName],
             petCount: this.cityPetCount[cityName] || 0
           };
         });
+
         this.citiesWithColors.sort((a, b) => b.petCount - a.petCount);
 
         let cityPolygonTemplate = this.polygonSeries.mapPolygons.template;
@@ -185,6 +230,7 @@ export class BrasilMapComponent implements OnInit, OnDestroy {
    * Set up zoom controls for the map
    */
   setupZoomControls() {
+    //console.log('Setting up zoom controls...');
     this.chart.zoomControl = new am4maps.ZoomControl();
     this.chart.zoomControl.slider.height = 100;
     this.chart.zoomControl.valign = "bottom";
@@ -199,28 +245,42 @@ export class BrasilMapComponent implements OnInit, OnDestroy {
    * Reset the map view to its default state
    */
   async resetView() {
+    //console.log('Resetting view...');
     if (this.chart) {
       this.chart.geodataSource.url = "assets/brazil-states.geojson";
       this.title = "Mapa do Brasil";
       this.chart.geodataSource.events.once("done", () => {
+        this.statesWithColors = this.mapaBrasil.features.map((feature: any) => {
+          const stateName = feature.properties.sigla;
+          return {
+            state: feature,
+            color: this.initialStateColors[stateName], // Use a cor inicial aqui
+            petCount: this.statePetCount[stateName] || 0
+          };
+        });
+
+        this.statesWithColors.sort((a, b) => b.petCount - a.petCount);
+        this.setupPolygonSeries();
+        this.setupMapEvents();
         this.chart.invalidateData();
       });
       this.viewingCities = false;
-      this.polygonSeries.mapPolygons.template.clickable = true;
-      this.polygonSeries.mapPolygons.template.hoverable = true;
-      this.cdRef.detectChanges();
       this.chart.geodataSource.load();
       this.chart.geodataSource.setTimeout(() => {
         this.chart.goHome(800);
       }, 500);
     }
   }
+
   clearPetsFromMap() {
-    let petSeries = this.chart.series.getIndex(2) as am4maps.MapImageSeries;
+    //console.log('Clearing pets from map...');
+    let petSeries = this.chart.series.values.find(series => series.name === "petSeries") as am4maps.MapImageSeries;
     if (petSeries) {
-      petSeries.mapImages.clear();
+      this.chart.series.removeIndex(this.chart.series.indexOf(petSeries)).dispose();
     }
   }
+
+
   /**
    * Generates a random color.
    * @returns A random color in hex format.
@@ -248,6 +308,8 @@ export class BrasilMapComponent implements OnInit, OnDestroy {
    * @param name Name of the map object.
    */
   focusOnMapObject(name: string) {
+    //console.log('Focusing on map object:', name);
+
     if (this.chart) {
       let targetPolygon = this.polygonSeries.mapPolygons.values.find(polygon => {
         const polygonName = (polygon.dataItem.dataContext as any)?.name;
@@ -257,24 +319,29 @@ export class BrasilMapComponent implements OnInit, OnDestroy {
       if (targetPolygon) {
         this.chart.zoomToMapObject(targetPolygon);
       } else {
-        console.log("Polígono não encontrado para:", name);
+        //console.log("Polígono não encontrado para:", name);
       }
     }
   }
   displayPetsInCity(cityName: string) {
-    // Primeiro, remova quaisquer pontos anteriores
-    let petSeries = this.chart.series.getIndex(2) as am4maps.MapImageSeries;
-    if (petSeries) {
-      petSeries.mapImages.clear();
-    } else {
-      petSeries = this.chart.series.push(new am4maps.MapImageSeries());
-    }
+    //console.log('Displaying pets in city:', cityName);
+
+    // Limpe qualquer série de pets existente
+    this.clearPetsFromMap();
+
+    // Agora, crie uma nova série de pets
+    let petSeries = this.chart.series.push(new am4maps.MapImageSeries());
+    petSeries.name = "petSeries"; // Atribua um nome à série para facilitar a recuperação posteriormente
+
+    // Limpe qualquer imagem anterior na série de animais de estimação
+    petSeries.mapImages.clear();
 
     // Filtrar pets que estão na cidade selecionada
     const petsInCity = this.petsList.filter(pet => pet.user.city === cityName);
 
     // Para cada pet na cidade, adicione um ponto no mapa
     petsInCity.forEach(pet => {
+
       const point = petSeries.mapImages.create();
       point.latitude = parseFloat(pet.user.latitude);
       point.longitude = parseFloat(pet.user.longitude);
@@ -289,30 +356,114 @@ export class BrasilMapComponent implements OnInit, OnDestroy {
     });
   }
 
+  setupCityHoverEvents() {
+    //console.log('Setting up city hover events...');
+
+    let cityPolygonTemplate = this.polygonSeries.mapPolygons.template;
+
+    cityPolygonTemplate.events.on("over", (event: any) => {
+        const cityData: any = event.target.dataItem.dataContext;
+        if(!cityData) return;
+        const cityName = cityData?.properties?.name;
+        if(!cityName) return;
+        this.focusOnMapObject(cityName);
+        this.displayPetsInCity(cityName);
+    });
+
+    cityPolygonTemplate.events.on("out", (event: any) => {
+        this.resetZoom();
+        this.clearPetsFromMap();
+    });
+}
+
+
   /**
    * Open a specific state on the map.
    * @param stateName Name of the state.
    */
   async openState(stateName: string) {
+    //console.log('Opening state:', stateName);
+    if (this.labelSeries) {
+      this.labelSeries.mapImages.clear();
+    }
     const stateData = this.statesWithColors.find(item => item.state.properties.name === stateName);
     if (stateData) {
       const stateCode = stateData.state.properties.codigo_ibg;
-      const citiesData = await this.geoDataService.getGeoData(`geojs-${stateCode}-mun.json`);
-      this.chart.geodata = citiesData;
-      this.citiesWithColors = citiesData.features.map((feature: any) => {
-        return { city: feature, color: this.randomColor() };
+      const targetPolygon = this.polygonSeries.mapPolygons.values.find(polygon => {
+        const polygonName = (polygon.dataItem.dataContext as any)?.name;
+        return polygonName === stateName;
       });
-      this.title = stateData.state.properties.name;
-      this.viewingCities = true;
-      this.chart.invalidateData();
-      this.chart.goHome(800);
+
+      if (targetPolygon) {
+        const zoomAnimation = this.chart.zoomToMapObject(targetPolygon);
+        zoomAnimation.events.on("animationended", async () => {
+          // Carregar dados das cidades após a animação de zoom
+          this.loadCityDataAndDisplay(stateData.state.properties.name);
+        });
+      }
     }
   }
+  async loadCityDataAndDisplay(stateName: string) {
+    //console.log('Loading city data for:', stateName);
+
+    const stateData = this.statesWithColors.find(item => item.state.properties.name === stateName);
+    if (stateData) {
+        const stateCode = stateData.state.properties.codigo_ibg;
+        if(stateCode === '31') {
+          return;
+        }
+        const citiesData = await this.geoDataService.getGeoData(`geojs-${stateCode}-mun.json`);
+
+        this.chart.geodata = citiesData;
+
+
+        this.setupPolygonSeries();
+        this.setupMapEvents();
+        this.citiesWithColors = citiesData.features.map((feature: any) => {
+
+          const cityName = feature.properties.name;
+          if (!this.initialCityColors[cityName]) {
+            this.initialCityColors[cityName] = this.randomColor();
+          }
+          return {
+            city: feature,
+            color: this.initialCityColors[cityName],
+            petCount: this.cityPetCount[cityName] || 0
+          };
+        });
+
+        //this.setupCityHoverEvents();  // Adicione esta linha para configurar os eventos de hover para as cidades
+
+
+        this.citiesWithColors.sort((a, b) => b.petCount - a.petCount);
+
+        let cityPolygonTemplate = this.polygonSeries.mapPolygons.template;
+        cityPolygonTemplate.adapter.add("fill", (fill, target) => {
+          const name = (target.dataItem.dataContext as any)?.name;
+          const foundCity = this.citiesWithColors.find(item => item.city.properties.name === name);
+          return am4core.color(foundCity ? foundCity.color : this.randomColor());
+        });
+
+        this.title = stateData.state.properties.name;
+        this.viewingCities = true;
+        this.polygonSeries.mapPolygons.template.clickable = false;
+        this.polygonSeries.mapPolygons.template.hoverable = false;
+        this.cdRef.detectChanges();
+        this.chart.invalidateData();
+        this.chart.goHome(800);
+
+        if (this.labelSeries) {
+          this.labelSeries.mapImages.clear();
+        }
+      }
+}
+
 
   /**
    * Resets the zoom level of the map.
    */
   resetZoom() {
+    //console.log('Resetting zoom...');
     if (this.chart) {
       this.chart.goHome(800); // 800 é a duração da animação. Ajuste conforme necessário.
     }
@@ -322,7 +473,12 @@ export class BrasilMapComponent implements OnInit, OnDestroy {
    * Calculate the number of pets per state and city.
    */
   calculatePetsCount() {
+    //console.log('Calculating pets count...');
+
+    this.statePetCount = {};
+    this.cityPetCount = {};
     this.petsList.forEach(pet => {
+
       const stateName = pet.user.state;
       const cityName = pet.user.city;
 
@@ -341,7 +497,47 @@ export class BrasilMapComponent implements OnInit, OnDestroy {
       }
     });
     this.cdRef.detectChanges();
-    console.log(this.statePetCount);
+    //console.log(this.statePetCount);
   }
+  updatePetCountsAndColors() {
+    //console.log('Updating pet counts and colors...');
+    if (this.labelSeries) {
+      this.labelSeries.mapImages.clear();
+    }
+    this.calculatePetsCount();
+
+    // Atualizando statesWithColors
+    this.statesWithColors = this.mapaBrasil.features.map((feature: any) => {
+      const stateName = feature.properties.sigla;
+      const existingState = this.statesWithColors.find(item => item.state.properties.sigla === stateName);
+      const existingColor = existingState ? existingState.color : this.randomColor();
+      return {
+        state: feature,
+        color: existingColor,
+        petCount: this.statePetCount[stateName] || 0
+      };
+    });
+
+    // Se estiver visualizando cidades, atualize citiesWithColors
+    if (this.viewingCities) {
+      this.citiesWithColors = (this.chart.geodata as any).features.map((feature: any) => {
+        const cityName = feature.properties.name;
+        const existingCity = this.citiesWithColors.find(item => item.city.properties.name === cityName);
+        const existingCityColor = existingCity ? existingCity.color : this.randomColor();
+        return {
+          city: feature,
+          color: existingCityColor,
+          petCount: this.cityPetCount[cityName] || 0
+        };
+      });
+    }
+    this.citiesWithColors.sort((a, b) => b.petCount - a.petCount);
+    this.statesWithColors.sort((a, b) => b.petCount - a.petCount);
+
+    if (this.chart) {
+      this.chart.invalidateData();
+    }
+  }
+
 
 }
