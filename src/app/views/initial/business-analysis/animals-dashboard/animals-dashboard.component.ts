@@ -5,7 +5,7 @@ import { BreedDTO } from '../../panel-admin/breeds/breeds.service';
 import { CharacteristicDTO } from '../../panel-admin/features/characteristics.service';
 import { SizeDTO } from '../../panel-admin/sizes/sizes.service';
 import { ActivatedRoute } from '@angular/router';
-import { PetDto } from '../PetUser.service';
+import { PetDto, PetsUsersService } from '../PetUser.service';
 
 @Component({
   selector: 'app-animals-dashboard',
@@ -25,8 +25,9 @@ export class AnimalsDashboardComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private route: ActivatedRoute
-  ) {}
+    private route: ActivatedRoute,
+    private yourService: PetsUsersService // Adicione esta linha
+  ) { }
 
   ngOnInit() {
     const resolvedData = this.route.snapshot.data['dashboardData'];
@@ -100,9 +101,9 @@ export class AnimalsDashboardComponent implements OnInit {
   }
 
   private filterByEndDate(pet: PetDto, endDate: string): boolean {
-      let end = new Date(endDate);
-      let petCreatedDate = new Date(pet.createdAt);
-      return petCreatedDate <= end;
+    let end = new Date(endDate);
+    let petCreatedDate = new Date(pet.createdAt);
+    return petCreatedDate <= end;
   }
 
 
@@ -138,6 +139,44 @@ export class AnimalsDashboardComponent implements OnInit {
       this.listFiltros = this.listFiltros.filter(val => val);
     }
   }
+
+  downloadExcel() {
+    const rawFilters = this.form.value;
+
+    // Mapeando os valores do formulário para corresponder ao FilterModel
+    let filters = {
+        AnimalTypeId: rawFilters.animalType ? +rawFilters.animalType : null,
+        BreedId: rawFilters.breed ? +rawFilters.breed : null,
+        CharacteristicId: rawFilters.characteristics ? +rawFilters.characteristics : null,
+        SizeId: rawFilters.size ? +rawFilters.size : null,
+        MinAge: rawFilters.minAge ? +rawFilters.minAge : null,
+        MaxAge: rawFilters.maxAge ? +rawFilters.maxAge : null,
+        StartDate: rawFilters.startDate || null,
+        EndDate: rawFilters.endDate || null,
+        Status: null  // inicialmente definido como null
+    };
+
+    // Ajustando o Status
+    if (rawFilters.status === 'adopted') {
+        filters.Status = true;
+    } else if (rawFilters.status === 'available') {
+        filters.Status = false;
+    }else{
+        filters.Status = null;
+    }
+
+    this.yourService.exportToExcel(filters).subscribe((data: Blob) => {
+        const blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'Pets.xlsx';
+        a.click();
+        window.URL.revokeObjectURL(url);
+    });
+}
+
+
 
 
 

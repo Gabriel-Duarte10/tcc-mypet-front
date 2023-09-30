@@ -48,4 +48,7 @@ export class PetsUsersService {
   getAllUsers(): Observable<UserDto[]> {
     return this.http.get<UserDto[]>(this.apiUser);
   }
+  exportToExcel(filters: any): Observable<Blob> {
+    return this.http.post(`${this.apiPet}/export-to-excel`, filters, { responseType: 'blob' });
+  }
 }
