@@ -27,6 +27,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ScreenTableComponent } from './components/screen-table/screen-table.component';
 import {MatSort, MatSortModule} from '@angular/material/sort';
+import { NgChartsModule } from 'ng2-charts';
+
 
 const components = [
   LoadingComponent,
@@ -44,7 +46,7 @@ const modules = [
   FormsModule,
   RouterModule,
   // Grafico Material
-
+  NgChartsModule,
   // Angular Bootstrap
   NgbModule,
 

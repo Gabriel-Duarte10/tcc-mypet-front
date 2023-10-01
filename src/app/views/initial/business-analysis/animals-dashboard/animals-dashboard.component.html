@@ -1,4 +1,12 @@
-<h2>Dashboard de Animais</h2>
+<div class="header-container">
+  <h2>Dashboard de Animais</h2>
+  <div class="view-buttons">
+      <button class="custom-button" (click)="showMap(1)">Mostrar Mapa</button>
+      <button class="custom-button" (click)="showMap(2)">Mostrar Gráfico</button>
+      <button class="custom-button" (click)="showMap(3)">Mostrar Gráfico de Rosca</button>
+  </div>
+</div>
+
 <form [formGroup]="form">
   <div class="dashboard-container">
     <div class="content">
@@ -7,7 +15,7 @@
           <label>Tipo de Animal</label>
           <div class="select-container">
             <select formControlName="animalType">
-              <option value="" disabled>Selecione um tipo de animal</option>
+              <option value="" >Selecione um tipo de animal</option>
               <option *ngFor="let type of animalTypes" [value]="type.id">{{ type.name }}</option>
             </select>
             <!-- <i id="arrow-down" class="ta-arrow-down"></i> -->
@@ -17,7 +25,7 @@
           <label>Raça</label>
           <div class="select-container">
             <select formControlName="breed">
-              <option value="" disabled>Selecione uma Raça</option>
+              <option value="" >Selecione uma Raça</option>
               <option *ngFor="let breed of breeds" [value]="breed.id">{{ breed.name }}</option>
             </select>
             <!-- <i id="arrow-down" class="ta-arrow-down"></i> -->
@@ -28,7 +36,7 @@
           <label>Característica</label>
           <div class="select-container">
             <select formControlName="characteristics">
-              <option value="" disabled>Selecione uma Característica</option>
+              <option value="" >Selecione uma Característica</option>
               <option *ngFor="let characteristic of characteristics" [value]="characteristic.id">{{ characteristic.name
                 }}</option>
             </select>
@@ -40,7 +48,7 @@
           <label>Porte</label>
           <div class="select-container">
             <select formControlName="size">
-              <option value="" disabled>Selecione um Porte</option>
+              <option value="" >Selecione um Porte</option>
               <option *ngFor="let size of sizes" [value]="size.id">{{ size.name }}</option>
             </select>
             <!-- <i id="arrow-down" class="ta-arrow-down"></i> -->
@@ -51,7 +59,7 @@
           <label>Status</label>
           <div class="select-container">
             <select formControlName="status">
-              <option value="" disabled>Selecione um Status</option>
+              <option value="" >Selecione um Status</option>
               <option value="adopted">Adotado</option>
               <option value="available">Disponível</option>
             </select>
@@ -79,6 +87,15 @@
             <input type="date" formControlName="endDate">
           </div>
         </div>
+        <div class="filter-group" *ngIf="ActiveMap != 1">
+          <label>Estado</label>
+          <div class="select-container">
+            <select formControlName="state">
+              <option value="" >Selecione um Estado</option>
+              <option *ngFor="let state of states" [value]="state">{{ state }}</option>
+            </select>
+          </div>
+        </div>
         <button mat-raised-button color="primary" class="filtro mt-3" (click)="onSubmit()">
           <i class="ta-times-circle fs-18"></i>
           <span>Filtrar</span>
@@ -94,7 +111,18 @@
             <span>Baixar Excel</span>
           </button>
         </div>
-        <app-brasil-map [petsList]="pets" [listFiltros]="listFiltros"></app-brasil-map>
+        <app-brasil-map *ngIf="ActiveMap == 1" [petsList]="pets" [listFiltros]="listFiltros"></app-brasil-map>
+        <!-- grafico de barras -->
+        <div class="rosca" *ngIf="ActiveMap == 2">
+          <div style="display: block;" [hidden]="ActiveMap != 2">
+            <div id="barchartdiv" style="width: 1100px; height: 600px;" *ngIf="ActiveMap == 2"></div>
+          </div>
+        </div>
+        <div class="rosca" *ngIf="ActiveMap == 3">
+          <div style="display: block;" [hidden]="ActiveMap != 3">
+            <div id="chartdiv" style="width: 800px; height: 600px;" *ngIf="ActiveMap == 3"></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
