@@ -1,0 +1,65 @@
+.dashboard-container {
+  margin: 20px;
+  margin-bottom: 5%;
+  .image-container {
+    text-align: center;
+    padding-bottom: 20px;
+
+    .dashboard-image {
+      width: 70%; // Garante que a largura ajuste-se proporcionalmente
+      height: 550px; // Exemplo de altura fixa
+    }
+  }
+
+  .content-container {
+    text-align: center;
+    padding-bottom: 20px;
+
+    h1 {
+      margin-top: 10px;
+    }
+
+    p {
+      margin-top: 5px;
+    }
+
+    .contact-info, .social-media {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 10px;
+
+      p {
+        margin-right: 10px;
+      }
+    }
+  }
+
+  .accordion {
+    display: block; // Ou 'display: flex;' se você quiser usar as propriedades de flexbox
+    width: 90%;
+    margin: auto;
+    max-width: 90%;
+
+    mat-expansion-panel {
+      border: 1px solid #ddd;
+      margin-bottom: 10px;
+      box-shadow: none;
+
+      &:not(:last-child) {
+
+      }
+
+      mat-expansion-panel-header {
+        background-color: #f0f0f0;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .content {
+        padding: 15px;
+        background-color: white;
+        line-height: 1.5;
+      }
+    }
+  }
+}

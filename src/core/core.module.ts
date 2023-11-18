@@ -65,7 +65,7 @@ const modules = [
   MatExpansionModule,
   MatPaginatorModule,
   MatMenuModule,
-  MatSortModule
+  MatSortModule,
 ];
 
 @NgModule({
