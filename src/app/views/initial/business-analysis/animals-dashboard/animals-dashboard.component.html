@@ -14,7 +14,7 @@
         <div class="filter-group">
           <label>Tipo de Animal</label>
           <div class="select-container">
-            <select formControlName="animalType">
+            <select formControlName="animalType" (change)="SelectTipoAnimal($event)">
               <option value="" >Selecione um tipo de animal</option>
               <option *ngFor="let type of animalTypes" [value]="type.id">{{ type.name }}</option>
             </select>

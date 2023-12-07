@@ -19,6 +19,7 @@ export class AnimalsDashboardComponent implements OnInit {
   form!: FormGroup;
   animalTypes: AnimalTypeDTO[] = [];
   breeds: BreedDTO[] = [];
+  breedsAll: BreedDTO[] = [];
   characteristics: CharacteristicDTO[] = []; // Exemplo, ajuste conforme necessário
   sizes: SizeDTO[] = []; // Exemplo, ajuste conforme necessário
   pets: PetDto[] = []; // Exemplo, ajuste conforme necessário
@@ -80,6 +81,7 @@ export class AnimalsDashboardComponent implements OnInit {
     const resolvedData = this.route.snapshot.data['dashboardData'];
     this.animalTypes = resolvedData.animalTypes;
     this.breeds = resolvedData.breeds;
+    this.breedsAll = resolvedData.breeds;
     this.characteristics = resolvedData.characteristics;
     this.sizes = resolvedData.sizes;
     this.pets = resolvedData.pets;
@@ -152,6 +154,19 @@ export class AnimalsDashboardComponent implements OnInit {
     barSeries.name = 'Pets';
   }
 
+  SelectTipoAnimal(event: any) {
+    let IdAnimalType = event.target.value;
+    if(IdAnimalType == null || IdAnimalType == ""){
+      this.breeds = this.breedsAll;
+    }
+    else{
+      console.log(IdAnimalType);
+      console.log(this.breedsAll);
+
+      this.breeds = this.breedsAll.filter(breed => breed.animalType.id == event.target.value);
+    }
+
+  }
 
   filterPets(filters: any): PetDto[] {
     return this.petsAll.filter(pet => {
@@ -186,7 +201,7 @@ export class AnimalsDashboardComponent implements OnInit {
   }
 
   private filterByStatus(pet: PetDto, status: string): boolean {
-    return (status === 'adopted' ? pet.adoptionStatus : !pet.adoptionStatus);
+    return (status === 'adopted' ? !pet.adoptionStatus : pet.adoptionStatus);
   }
 
   private filterByMinAge(pet: PetDto, minAge: number): boolean {
@@ -202,16 +217,21 @@ export class AnimalsDashboardComponent implements OnInit {
   }
 
   private filterByStartDate(pet: PetDto, startDate: string): boolean {
-    let start = new Date(startDate);
+    let start = new Date(startDate + 'T00:00:00');
     let petCreatedDate = new Date(pet.createdAt);
-    return petCreatedDate >= start;
-  }
+    let petCreatedDateOnly = new Date(petCreatedDate.getFullYear(), petCreatedDate.getMonth(), petCreatedDate.getDate());
 
-  private filterByEndDate(pet: PetDto, endDate: string): boolean {
-    let end = new Date(endDate);
+    return petCreatedDateOnly >= start;
+}
+
+private filterByEndDate(pet: PetDto, endDate: string): boolean {
+    let end = new Date(endDate + 'T00:00:00');
     let petCreatedDate = new Date(pet.createdAt);
-    return petCreatedDate <= end;
-  }
+    let petCreatedDateOnly = new Date(petCreatedDate.getFullYear(), petCreatedDate.getMonth(), petCreatedDate.getDate());
+
+    return petCreatedDateOnly <= end;
+}
+
 
 
 
